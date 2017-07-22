@@ -2,6 +2,9 @@ package com.naturalprogrammer.spring.tutorial.entities;
 
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class CDA {
 
 	String aadharId;
@@ -13,6 +16,14 @@ public class CDA {
 	
 	Set<Treatment> treatment;
 	
+	public Set<Treatment> getTreatment() {
+		return treatment;
+	}
+
+	public void setTreatment(Set<Treatment> treatment) {
+		this.treatment = treatment;
+	}
+
 	public CDA() {
 		
 	}
