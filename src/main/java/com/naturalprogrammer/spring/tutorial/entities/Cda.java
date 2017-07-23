@@ -2,18 +2,40 @@ package com.naturalprogrammer.spring.tutorial.entities;
 
 import java.util.Set;
 
+import javax.annotation.Generated;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
-public class CDA {
 
-	String aadharId;
+
+@XmlRootElement
+@Entity
+public class Cda {
+
+	
+	@Id @GeneratedValue
+	Long id;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	String aadhar;
 	String name;
 	String gender;
 	String dob;
 	String contactNo;
 	String author;
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="cdaId")
 	Set<Treatment> treatment;
 	
 	public Set<Treatment> getTreatment() {
@@ -24,14 +46,14 @@ public class CDA {
 		this.treatment = treatment;
 	}
 
-	public CDA() {
+	public Cda() {
 		
 	}
 	
-	public CDA(String aadharId, String name, String gender, String dob, String contactNo, String author,
+	public Cda(String aadhar, String name, String gender, String dob, String contactNo, String author,
 			Set<Treatment> treatment) {
 		super();
-		this.aadharId = aadharId;
+		this.aadhar = aadhar;
 		this.name = name;
 		this.gender = gender;
 		this.dob = dob;
@@ -39,11 +61,11 @@ public class CDA {
 		this.author = author;
 		this.treatment = treatment;
 	}
-	public String getAadharId() {
-		return aadharId;
+	public String getAadhar() {
+		return aadhar;
 	}
-	public void setAadharId(String aadharId) {
-		this.aadharId = aadharId;
+	public void setAadhar(String aadhar) {
+		this.aadhar = aadhar;
 	}
 	public String getName() {
 		return name;

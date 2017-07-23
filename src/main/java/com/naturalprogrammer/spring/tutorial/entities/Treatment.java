@@ -1,32 +1,58 @@
 package com.naturalprogrammer.spring.tutorial.entities;
 
-import java.util.List;
+import java.util.Set;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 
-
+@Entity
 public class Treatment {
 
+	@Id @GeneratedValue
+	Long id;
+	
 	String author;
+	
 	String place;
 	String dateTime;
-	List<String> problems;
-	List<String> socialHistory;
-	List<String> medication;
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="problemId")
+	Set<Problem> problems;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="socialhistoryId")
+	Set<Socialhistory> socialhistory;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="medicationId")
+	Set<Medication> medication;
 	
 	public Treatment() {
 		
 	}
 	
-	public Treatment(String author, String place, String dateTime, List<String> problems, List<String> socialHistory,
-			List<String> medication) {
+	public Treatment(String author, String place, String dateTime, Set<Problem> problems, Set<Socialhistory> socialHistory,
+			Set<Medication> medication) {
 		super();
 		this.author = author;
 		this.place = place;
 		this.dateTime = dateTime;
 		this.problems = problems;
-		this.socialHistory = socialHistory;
+		this.socialhistory = socialHistory;
 		this.medication = medication;
 	}
 	
@@ -49,22 +75,22 @@ public class Treatment {
 	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
-	public List<String> getProblems() {
+	public Set<Problem> getProblems() {
 		return problems;
 	}
-	public void setProblems(List<String> problems) {
+	public void setProblems(Set<Problem> problems) {
 		this.problems = problems;
 	}
-	public List<String> getSocialHistory() {
-		return socialHistory;
+	public Set<Socialhistory> getSocialHistory() {
+		return socialhistory;
 	}
-	public void setSocialHistory(List<String> socialHistory) {
-		this.socialHistory = socialHistory;
+	public void setSocialHistory(Set<Socialhistory> socialHistory) {
+		this.socialhistory = socialHistory;
 	}
-	public List<String> getMedication() {
+	public Set<Medication> getMedication() {
 		return medication;
 	}
-	public void setMedication(List<String> medication) {
+	public void setMedication(Set<Medication> medication) {
 		this.medication = medication;
 	}
 	
