@@ -1,4 +1,4 @@
-package com.naturalprogrammer.spring.tutorial.entities;
+package com.cdagi.spring.entities;
 
 import java.util.Set;
 

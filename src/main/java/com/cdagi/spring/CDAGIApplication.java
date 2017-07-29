@@ -1,8 +1,6 @@
-package com.naturalprogrammer.spring.tutorial;
+package com.cdagi.spring;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -11,23 +9,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.naturalprogrammer.spring.tutorial.dao.CdaDao;
-import com.naturalprogrammer.spring.tutorial.entities.Cda;
-import com.naturalprogrammer.spring.tutorial.entities.Medication;
-import com.naturalprogrammer.spring.tutorial.entities.Problem;
-import com.naturalprogrammer.spring.tutorial.entities.Socialhistory;
-import com.naturalprogrammer.spring.tutorial.entities.Treatment;
+import com.cdagi.spring.dao.CdaDao;
+import com.cdagi.spring.entities.Cda;
+import com.cdagi.spring.entities.Medication;
+import com.cdagi.spring.entities.Problem;
+import com.cdagi.spring.entities.Socialhistory;
+import com.cdagi.spring.entities.Treatment;
 
 @SpringBootApplication
-public class NpSpringTutorialApplication {
+public class CDAGIApplication {
 
+	/*
+	 * CDA Generation and Integration for Health
+		Information Exchange Based on Cloud
+		Computing System
+	 * 
+	 */
+	
 	public static void main(String[] args) {
-		SpringApplication.run(NpSpringTutorialApplication.class, args);
+		SpringApplication.run(CDAGIApplication.class, args);
 	}
 	
 	@PostConstruct
 	public void init() {
 		
+		/*
+		 * Initial Data
+		 */
 		Set<Treatment> treatment = new HashSet<Treatment>();
 		Set<Problem> problems = new HashSet<Problem>();
 		problems.add(new Problem("Cough"));
@@ -45,7 +53,6 @@ public class NpSpringTutorialApplication {
 		medication.add(new Medication("Cold Act 500"));
 		
 		treatment.add(new Treatment("Ravi", "BGS", "23-07-2017", problems, socialhistory, medication));
-		//treatment.add(new Treatment("Ravi", "BGS", "23-07-2017", problems, socialhistory, medication));
 		
 		
 		Cda cds = new Cda("007", "Sunil", "Male", "20-06-1995", "9898989898", "BGS Banaglore", treatment);
